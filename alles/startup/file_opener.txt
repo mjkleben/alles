@@ -1,0 +1,8 @@
+def file_opener():
+    try:
+        os.startfile(rFILLER)
+
+    except:
+        print("Something is not working with the file PATH.")
+
+file_opener()

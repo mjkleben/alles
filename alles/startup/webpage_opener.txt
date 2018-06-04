@@ -1,0 +1,7 @@
+def webpage_opener():
+    try:
+        webbrowser.open(FILLER)
+    except:
+        print("URL not working with alles at the moment")
+
+webpage_opener()

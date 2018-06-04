@@ -1,0 +1,14 @@
+import urllib
+import re, os, webbrowser,requests #for Google
+import urllib.request, urllib.parse #for Youtube
+import bs4
+import smtplib #for emails
+import sys, time
+from pytube import YouTube
+import lxml
+from selenium import webdriver
+import time
+import re
+import glob
+import pip
+import subprocess

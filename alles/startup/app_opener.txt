@@ -1,0 +1,7 @@
+def app_opener():
+    try:
+        subprocess.call(rFILLER)
+    except:
+        print("Something is not working with the application PATH")
+
+app_opener()

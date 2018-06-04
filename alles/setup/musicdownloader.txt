@@ -1,0 +1,62 @@
+import os
+import time
+from selenium import webdriver
+
+def music_downloader(FILLER_URL):
+    try:
+        youtube_url = FILLER_URL
+
+        userhome = str(os.path.expanduser('~'))
+        desktop_path = userhome + '\Desktop\\'
+        #print(desktop_path)
+
+        path = os.path.dirname(os.getcwd())
+        path = path + r"\alles" + "\setup\\"
+        
+        driver = path + "\\chromedriver.exe"
+        #print(driver)
+
+        chrome_options = webdriver.ChromeOptions()
+        prefs = {'download.default_directory': desktop_path}
+        chrome_options.add_experimental_option('prefs', prefs)
+        chrome_options.add_argument("--disable-extensions")
+        driver = webdriver.Chrome(driver, chrome_options=chrome_options)
+
+
+        driver.set_window_position(-10000, 0)
+
+        driver.get("http://www.flvto.biz/youtube-to-mp3/")
+        xpath1 = '//*[@id="convertForm"]/div[1]/label/div'
+        button = driver.find_element_by_xpath(xpath1).click()
+        src = driver.page_source
+        inputElement = driver.find_element_by_class_name("url-conv")
+        inputElement.send_keys(youtube_url)
+        xpath = '//*[@id="convertForm"]/div[2]/button'
+        button = driver.find_element_by_xpath(xpath).click()
+
+        while ('downloads' not in driver.current_url):
+            time.sleep(3)
+
+        if ('downloads' in driver.current_url):
+            xpath3 = '/html/body/header/div[2]/div/div[2]/div[2]/div[1]/a[1]'
+            button = driver.find_element_by_xpath(xpath3)
+            driver.execute_script("arguments[0].click();", button)
+            #print("Downloaded to your Desktop! ")
+        time.sleep(120)
+
+        driver.quit()
+    except Exception as e:
+        print(e)
+
+music_downloader(foo)
+path1 = str(os.path.dirname(os.getcwd()))
+path1 = path1 + r"\alles"
+path1 += "\\"
+
+all_files = os.listdir(path1)
+
+if "music_script.py" in all_files:
+    os.remove(os.path.join(path1, "music_script.py"))
+
+
+
